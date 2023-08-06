@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Add book</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-dark">
+  <div class="container-fluid">
+    <a class="navbar-brand text-white m-3" ><h1><i>Book Store</i></h1></a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link active text-white m-4" aria-current="page" th:href="@{/home}"><h4>Home</h4></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white m-4" th:href="@{/books}"><h4>Available Books</h4></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white m-4" th:href="@{/books/mybooks}"><h4>MyBooks</h4></a>
+        </li>
+
+      </ul>
+    </div>
+    <div>
+      <a class="nav-link text-white text-info" th:href="@{/books/new}"><h4>Register Book</h4></a>
+    </div>
+  </div>
+</nav>
+
+<div class="container-fluid text-center col-md-4 table-bordered border rounded" style="background: antiquewhite">
+
+  <br><br>  <div class="h2 text-center" style="color: chartreuse">[[${title}]]</div> <br><br>
+
+  <form th:action="@{/books/save}"  method="post" th:object="${book}" >
+
+    <input type="hidden" th:field="*{id}">
+
+    <div class="container">
+      <div class="mb-3">
+        <label class="h4">Name of book</label>
+        <div>
+          <input type="text" th:field="*{bookName}" class="form-control ">
+        </div>
+      </div>
+
+      <div>
+        <label class="h4">Author of book</label>
+        <div>
+          <input type="text" th:field="*{author}" class="form-control">
+        </div>
+      </div>
+
+      <div>
+        <label class="h4">Price</label>
+        <input type="text" th:field="*{price}" class="form-control">
+      </div>
+
+      <div>
+        <button type="submit" class="btn-primary btn m-3" th:href="@{/books/save}">Submit</button>
+      </div>
+
+    </div>
+
+
+  </form>
+
+
+</div>
+</body>
+</html>
+
+
+<!--my-5 : khoang cac ben tren
+
+    col-mb-4  -->

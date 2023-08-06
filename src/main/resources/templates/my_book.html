@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+
+  <!-- for icon -->
+
+  <script src="http://kit.fontawesome.com/0faddc1af8.js" crossorigin="anonymous"></script>
+
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-dark">
+  <div class="container-fluid">
+    <a class="navbar-brand text-white m-3" ><h1><i>Book Store</i></h1></a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link active text-white m-4" aria-current="page" th:href="@{/home}"><h4>Home</h4></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white m-4" th:href="@{/books}"><h4>Available Books</h4></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white m-4" th:href="@{/books/mybooks}"><h4>MyBooks</h4></a>
+        </li>
+
+      </ul>
+    </div>
+    <div>
+      <a class="nav-link text-white text-info" th:href="@{/books/new}"><h4>Register Book</h4></a>
+    </div>
+  </div>
+</nav>
+
+
+
+<div class="container-fluid text-center ">
+  <div class="h3 m-3">My Books</div>
+
+  <div th:if="message1" class="alert alert-success text-center">[[${message1}]]</div>
+
+  <div class="table table-success table-striped col-md-8 container-fluid text-center">
+    <table class="table table-bordered rounded">
+      <thead class="bg-dark">
+      <tr>
+        <td style="color: chartreuse">ID</td>
+        <td style="color: chartreuse">Name</td>
+        <td style="color: chartreuse">Author</td>
+        <td style="color: chartreuse">Price</td>
+        <td style="color: chartreuse">Action</td>
+      </tr>
+      </thead>
+
+      <tbody>
+      <th:block th:each="mybook : ${myBookList}">
+        <tr>
+          <td>[[${mybook.id}]]</td>
+          <td>[[${mybook.bookName}]]</td>
+          <td>[[${mybook.author}]]</td>
+          <td>[[${mybook.price}]]</td>
+          <td>
+           <a th:href="@{'/mybooks/delete/' + ${mybook.id}}"> <i class="fa-regular fa-trash-can"></i></a>
+          </td>
+        </tr>
+      </th:block>
+      </tbody>
+
+    </table>
+  </div>
+
+</div>
+</body>
+</html>
